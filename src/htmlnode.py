@@ -4,6 +4,7 @@ class HTMLNode:
         self.tag = tag
         self.value = value
 
+        # TODO: Move me?
         if children != None and not isinstance(children, list):
             raise TypeError("children needs to be a list")
 
