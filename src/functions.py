@@ -6,19 +6,19 @@ def text_node_to_html_node(text_node):
         raise TypeError("text_node needs to be a TextNode type")
     
     match text_node.text_type:
-        case TextType.TEXT_BOLD:
+        case TextType.BOLD:
             return LeafNode("b", text_node.text)
-        case TextType.TEXT_PLAIN:
+        case TextType.TEXT:
             return LeafNode(None, text_node.text)
-        case TextType.TEXT_ITALIC:
+        case TextType.ITALIC:
             return LeafNode("i", text_node.text)
-        case TextType.TEXT_CODE:
+        case TextType.CODE:
             return LeafNode("code", text_node.text)
-        case TextType.TEXT_LINK:
+        case TextType.LINK:
             props = {}
             props["href"] = text_node.url
             return LeafNode("a", text_node.text, props)
-        case TextType.TEXT_IMAGE:
+        case TextType.IMAGE:
             props = {}
             props["src"] = text_node.url
             props["alt"] = text_node.text
