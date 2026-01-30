@@ -20,7 +20,13 @@ class TestLeafNode(unittest.TestCase):
         success = "just text here"
         self.assertEqual(node.to_html(), success)
     
-    # TODO: Need to test img tags? But first we need to support self closing ones
+    def test_leaf_to_html_img(self):
+        props = {}
+        props["src"] = "www.google.com"
+        props["alt"] = "Google"
+        node = LeafNode("img", "", props)
+        success = '<img src="www.google.com" alt="Google" />'
+        self.assertEqual(node.to_html(), success)
 
 if __name__ == "__main__":
     unittest.main()
