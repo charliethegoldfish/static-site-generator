@@ -45,6 +45,10 @@ class TestSplitNodesDelimiter(unittest.TestCase):
         self.assertEqual(final_split_nodes[2].text_type, TextType.TEXT)
         self.assertEqual(final_split_nodes[3].text_type, TextType.BOLD)
         self.assertEqual(final_split_nodes[4].text_type, TextType.TEXT)
+    
+    def test_no_closing_delimiter(self):
+        node = TextNode("This is text with a _italic word", TextType.TEXT)
+        self.assertRaises(Exception, split_nodes_delimiter, [node], "_", TextType.ITALIC)
 
 
 if __name__ == "__main__":
