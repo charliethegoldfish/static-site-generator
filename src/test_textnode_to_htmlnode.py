@@ -2,7 +2,7 @@ import unittest
 
 from leafnode import LeafNode
 from textnode import TextNode, TextType
-from functions import text_node_to_html_node
+from node_conversion_functions import text_node_to_html_node
 
 class TestTextNodeToHTMLNode(unittest.TestCase):
     def test_text(self):
@@ -51,5 +51,5 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
         self.assertIn("alt", html_node.props)
         self.assertEqual(html_node.props["alt"], text)
     
-    
+
         
