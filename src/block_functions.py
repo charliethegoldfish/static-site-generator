@@ -1,6 +1,6 @@
 import re
 from enum import Enum
-from config import HEADING_REGEX
+from config import HEADING_REGEX, CODE_REGEX
 
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
@@ -25,6 +25,8 @@ def markdown_to_blocks(markdown):
 def block_to_block_type(block):
     if re.fullmatch(HEADING_REGEX, block):
         return BlockType.HEADING
+    elif re.fullmatch(CODE_REGEX, block):
+        return BlockType.CODE
     else:
         return BlockType.PARAGRAPH
     
