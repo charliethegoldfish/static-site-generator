@@ -1,3 +1,15 @@
+import re
+from enum import Enum
+from config import HEADING_REGEX
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
+
 
 def markdown_to_blocks(markdown):
     split_markdown = markdown.split("\n\n")
@@ -7,3 +19,12 @@ def markdown_to_blocks(markdown):
         if block != "":
             blocks.append(block)
     return blocks
+
+# Use re.fullmatch ??
+
+def block_to_block_type(block):
+    if re.fullmatch(HEADING_REGEX, block):
+        return BlockType.HEADING
+    else:
+        return BlockType.PARAGRAPH
+    
