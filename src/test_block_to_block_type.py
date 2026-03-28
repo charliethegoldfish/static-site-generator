@@ -59,4 +59,24 @@ class TestBlockToBlockType(unittest.TestCase):
 		block_type = block_to_block_type(block)
 		self.assertNotEqual(BlockType.UNORDERED_LIST, block_type)
 	
+	# Ordered List Blocks
+	def test_ordered_list_block_type(self):
+		block = "1. list\n2. more list\n3. listy list"
+		block_type = block_to_block_type(block)
+		self.assertEqual(BlockType.ORDERED_LIST, block_type)
 	
+	def test_not_ordered_list_block_type(self):
+		block = "1. list\n3. more list\n4. listy list"
+		block_type = block_to_block_type(block)
+		self.assertNotEqual(BlockType.ORDERED_LIST, block_type)
+
+	def test_ordered_list_wrong_start_block_type(self):
+		block = "0. list\n1. more list\n2. listy list"
+		block_type = block_to_block_type(block)
+		self.assertNotEqual(BlockType.ORDERED_LIST, block_type)
+	
+	# Paragraph Blocks
+	def test_paragraph_block_type(self):
+		block = "literally a paragraph aye"
+		block_type = block_to_block_type(block)
+		self.assertEqual(BlockType.PARAGRAPH, block_type)
