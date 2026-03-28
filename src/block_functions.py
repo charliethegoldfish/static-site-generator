@@ -1,6 +1,6 @@
 import re
 from enum import Enum
-from config import HEADING_REGEX, CODE_REGEX, QUOTE_REGEX
+from config import HEADING_REGEX, CODE_REGEX, QUOTE_REGEX, LIST_REGEX
 
 class BlockType(Enum):
     PARAGRAPH = "paragraph"
@@ -29,6 +29,8 @@ def block_to_block_type(block):
         return BlockType.CODE
     elif re.fullmatch(QUOTE_REGEX, block):
         return BlockType.QUOTE
+    elif re.fullmatch(LIST_REGEX, block):
+        return BlockType.UNORDERED_LIST
     else:
         return BlockType.PARAGRAPH
     
