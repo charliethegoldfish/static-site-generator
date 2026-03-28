@@ -16,6 +16,11 @@ class TestBlockToBlockType(unittest.TestCase):
 		block_type = block_to_block_type("####### Also not Heading here")
 		self.assertNotEqual(BlockType.HEADING, block_type)
 
+	def test_heading_not_at_start(self):
+		block = "something## Heading"
+		block_type = block_to_block_type(block)
+		self.assertNotEqual(BlockType.HEADING, block_type)
+
 	# Code Blocks
 	def test_code_block_type(self):
 		block = "```\ncode here\n```"
@@ -45,6 +50,11 @@ class TestBlockToBlockType(unittest.TestCase):
 
 	def test_not_quote_block_type(self):
 		block = "> quote start\nquote not continue\n>quote again"
+		block_type = block_to_block_type(block)
+		self.assertNotEqual(BlockType.QUOTE, block_type)
+
+	def test_not_quote_block_type_two(self):
+		block = "> quote start\nquote > not continue\n>quote again"
 		block_type = block_to_block_type(block)
 		self.assertNotEqual(BlockType.QUOTE, block_type)
 	
