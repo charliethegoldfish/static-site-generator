@@ -35,3 +35,8 @@ def text_node_to_html_node(text_node):
             return LeafNode("img", "", props)
         case _:
             raise Exception(f"{text_node.text_type} not supported")
+        
+def text_to_code_html_node(text):
+    # NOTE: If we allow levels of code backticks, this will fall down
+    node = TextNode(text.strip('`'), TextType.CODE)
+    return text_node_to_html_node(node)

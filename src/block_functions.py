@@ -55,3 +55,29 @@ def block_to_block_type(block):
     else:
         return BlockType.PARAGRAPH
     
+def block_type_to_html_tag(block_type, optional_level=1):
+    if not isinstance(block_type, BlockType):
+        raise Exception("block_type needs to be a member of BlockType enum")
+    
+    match block_type:
+        case BlockType.HEADING:
+            return f"h{optional_level}"
+        case BlockType.CODE:
+            return "pre"
+        case BlockType.QUOTE:
+            return "blockquote"
+        case BlockType.UNORDERED_LIST:
+            return "ul"
+        case BlockType.ORDERED_LIST:
+            return "ol"
+        case BlockType.PARAGRAPH:
+            return "p"
+        case _:
+            raise Exception(f"{block_type} not supported")
+        
+
+
+
+# Remove relevant markdown artifacts
+def block_to_text(block):
+    pass

@@ -12,3 +12,7 @@ UNORDERED_LIST_REGEX = r"(- .*\n?){1,}"
 ORDERED_LIST_REGEX = r"^(\d\. .*\n?){1,}"
 
 ORD_LIST_NUM_REGEX = r"^\d(?=\.)"
+
+HEADING_HASH_REGEX = r"^#{1,6}(?= )"
+ORD_LIST_REMOVE_REGEX = r"(^\d\. )"
+UNORD_LIST_REMOVE_REGEX = r"(^- )"
