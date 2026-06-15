@@ -40,7 +40,6 @@ def block_to_parent_html_node(block_type, block):
 	html_tag = block_type_to_html_tag(block_type, heading_level)
 	return ParentNode(html_tag, [])
 
-
 def markdown_to_html_node(markdown):
 	# Split into blocks
 	blocks = markdown_to_blocks(markdown)
@@ -57,15 +56,17 @@ def markdown_to_html_node(markdown):
 		# create appropriate children nodes and assign
 		# code block is a special case
 		children_nodes = []
-		if block_type == BlockType.CODE:
-			node = text_to_code_html_node(block)
-			children_nodes.append(node)
-		elif block_type == BlockType.ORDERED_LIST or block_type == BlockType.UNORDERED_LIST:
-			ordered = block_type == BlockType.ORDERED_LIST
-			children_nodes = list_block_to_html_nodes(block, ordered)
-		else:
-			# children_nodes = text_to_children_nodes(block)
-			pass
+
+		match block_type:
+			case BlockType.CODE:
+				node = text_to_code_html_node(block)
+				children_nodes.append(node)
+			case BlockType.ORDERED_LIST:
+				children_nodes = list_block_to_html_nodes(block, True)
+			case BlockType.UNORDERED_LIST:
+				children_nodes = list_block_to_html_nodes(block, False)
+			case _:
+				pass
 		
 		block_node.children = children_nodes
 		
