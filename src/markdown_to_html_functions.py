@@ -36,6 +36,11 @@ def quote_block_to_html_nodes(block):
 		nodes.append(para_node)
 	return nodes
 
+def heading_block_to_html_nodes(block):
+	stripped_block = block.lstrip('# ')
+	nodes = text_to_children_nodes(stripped_block)
+	return nodes
+
 def text_to_children_nodes(text, remove_newlines = False):
 	if remove_newlines:
 		text = text.replace('\n', ' ')
@@ -85,7 +90,7 @@ def markdown_to_html_node(markdown):
 			case BlockType.PARAGRAPH:
 				children_nodes = paragraph_block_to_html_nodes(block)
 			case BlockType.HEADING:
-				pass
+				children_nodes = heading_block_to_html_nodes(block)
 			case _:
 				pass
 		

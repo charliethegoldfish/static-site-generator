@@ -28,6 +28,8 @@ the **same** even with inline stuff
 		html = node.to_html()
 		success = "<div><ul><li>A list element</li><li>Another with <b>bold</b></li><li>How about <code>code</code></li></ul></div>"
 
+		self.assertEqual(html, success)
+
 	def test_ordered_list(self):
 		md = """
 1. A list element
@@ -37,6 +39,8 @@ the **same** even with inline stuff
 		node = markdown_to_html_node(md)
 		html = node.to_html()
 		success = "<div><ol><li>A list element</li><li>Another with <b>bold</b></li><li>How about <code>code</code></li></ol></div>"
+
+		self.assertEqual(html, success)
 	
 	def test_paragraphs(self):
 		md = """
@@ -63,4 +67,18 @@ This is another paragraph with _italic_ text and `code` here
 
 		node = markdown_to_html_node(md)
 		html = node.to_html()
-		success = "<div><blockquote><p>I am a quote</p><b>bold quote</b> I am<p></p></blockquote></div>"
+		success = "<div><blockquote><p>I am a quote</p><p><b>bold quote</b> I am</p></blockquote></div>"
+
+		self.assertEqual(html, success)
+
+	def test_heading_block(self):
+		md = """
+## Heading YAY
+
+# Another **heading**
+"""
+
+		node = markdown_to_html_node(md)
+		html = node.to_html()
+		success = "<div><h2>Heading YAY</h2><h1>Another <b>heading</b></h1></div>"
+		self.assertEqual(html, success)
