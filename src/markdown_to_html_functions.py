@@ -21,10 +21,14 @@ def list_block_to_html_nodes(block, ordered = False):
 			nodes.append(list_node)
 	return nodes
 
+def paragraph_block_to_html_nodes(block):
+	nodes = text_to_children_nodes(block, True)
+	return nodes
 
-	
+def text_to_children_nodes(text, remove_newlines = False):
+	if remove_newlines:
+		text = text.replace('\n', ' ')
 
-def text_to_children_nodes(text):
 	nodes = []
 	text_nodes = text_to_textnodes(text)
 
@@ -65,6 +69,10 @@ def markdown_to_html_node(markdown):
 				children_nodes = list_block_to_html_nodes(block, True)
 			case BlockType.UNORDERED_LIST:
 				children_nodes = list_block_to_html_nodes(block, False)
+			case BlockType.QUOTE:
+				pass
+			case BlockType.PARAGRAPH:
+				children_nodes = paragraph_block_to_html_nodes(block)
 			case _:
 				pass
 		
