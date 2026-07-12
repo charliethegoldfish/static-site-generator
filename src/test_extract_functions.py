@@ -1,6 +1,6 @@
 import unittest
 
-from extract_functions import extract_markdown_images, extract_markdown_links
+from extract_functions import extract_markdown_images, extract_markdown_links, extract_title
 
 class TestExtractFunctions(unittest.TestCase):
     def test_extract_markdown_images(self):
@@ -32,3 +32,6 @@ class TestExtractFunctions(unittest.TestCase):
         matches = extract_markdown_links(text)
         self.assertListEqual([("to boot dev", "https://www.boot.dev"), ("to youtube", "https://www.youtube.com/@bootdotdev")], matches)
     
+    def test_extract_title(self):
+        title = extract_title("# Hello")
+        self.assertEqual(title, "Hello")

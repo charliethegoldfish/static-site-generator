@@ -17,6 +17,8 @@ HEADING_HASH_REGEX = r"^#{1,6}(?= )"
 ORD_LIST_REMOVE_REGEX = r"(^\d\. )"
 UNORD_LIST_REMOVE_REGEX = r"(^- )"
 
+TITLE_REGEX = r"#{1,1} .{1,}"
+
 # Directories
 PUBLIC_PATH = "public"
 STATIC_PATH = "static"
