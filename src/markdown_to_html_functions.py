@@ -15,7 +15,7 @@ def list_block_to_html_nodes(block, ordered = False):
 		# Split it so we have the markdown artifact, then the rest of the text
 		split_item = re.split(split_regex, item, maxsplit=1)
 		if (len(split_item)) > 0:
-			text_item = split_item[1]
+			text_item = split_item[2]
 			child_nodes = text_to_children_nodes(text_item)
 			list_node = ParentNode("li", child_nodes)
 			nodes.append(list_node)
