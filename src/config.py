@@ -22,3 +22,6 @@ TITLE_REGEX = r"#{1,1} .{1,}"
 # Directories
 PUBLIC_PATH = "public"
 STATIC_PATH = "static"
+
+CONTENT_PATH = "content"
+TEMPLATE_PATH = "template.html"

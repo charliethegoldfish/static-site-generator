@@ -32,8 +32,7 @@ def quote_block_to_html_nodes(block):
 	for item in block_items:
 		formatted_item = item.lstrip('> ')
 		child_nodes = text_to_children_nodes(formatted_item)
-		para_node = ParentNode("p", child_nodes)
-		nodes.append(para_node)
+		nodes.extend(child_nodes)
 	return nodes
 
 def heading_block_to_html_nodes(block):
