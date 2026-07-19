@@ -20,7 +20,7 @@ UNORD_LIST_REMOVE_REGEX = r"(^- )"
 TITLE_REGEX = r"#{1,1} .{1,}"
 
 # Directories
-PUBLIC_PATH = "public"
+BUILD_PATH = "docs"
 STATIC_PATH = "static"
 
 CONTENT_PATH = "content"
